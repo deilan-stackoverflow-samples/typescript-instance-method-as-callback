@@ -1,0 +1,32 @@
+{
+  "name": "node-typescript-vscode",
+  "version": "0.0.1",
+  "scripts": {
+    "start": "npm run serve:ts",
+    "serve:dev": "npm run nodemon -- --inspect=5858 --config ./nodemon.json --exec {{pwd}}/node_modules/.bin/ts-node ./src/index.ts",
+    "serve:prod": "node ./dist/index.js",
+    "build:prod": "npm run compile:prod",
+    "compile:prod": "npm run tsc -- -p ./tsconfig.json",
+    "clean:prod": "npm run rimraf -- ./dist/**/*",
+    "lint": "npm run tslint -- -c ./tslint.json -p ./tsconfig.json",
+    "lint:fix": "npm run tslint -- -c ./tslint.json -p ./tsconfig.json --fix",
+    "test": "exit 0",
+    "ci:travis": "npm run lint && npm run test && npm run build:prod",
+    "nodemon": "./node_modules/.bin/nodemon",
+    "tslint": "./node_modules/.bin/tslint",
+    "rimraf": "./node_modules/.bin/rimraf",
+    "tsc": "./node_modules/.bin/tsc"
+  },
+  "devDependencies": {
+    "@types/node": "^8.0.28",
+    "nodemon": "^1.12.1",
+    "rimraf": "^2.6.2",
+    "ts-node": "^3.3.0",
+    "tslib": "^1.7.1",
+    "tslint": "^5.7.0",
+    "typescript": "^2.5.2"
+  },
+  "dependencies": {
+    "zone.js": "^0.8.17"
+  }
+}
